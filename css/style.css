@@ -15,3 +15,8 @@ body {
 .news {
   cursor: pointer;
 }
+.news-author {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+}
