@@ -86,7 +86,10 @@ const newsFeed = (newsDetails) => {
               </div>
               <div>${total_view ? total_view : "No"} view</div>
               <div>rating</div>
-             <button type="button" class="btn btn-light me-4" onclick="newsDetailsBtn('${_id}')" >Light</button>
+
+             <button type="button" class="btn btn-light me-4" data-bs-toggle="modal" data-bs-target="#newsDetailsModal" onclick="newsDetailsBtn('${_id}')" >
+Details</button>
+             
             </div>
               </p>
             </div>
@@ -103,5 +106,32 @@ const newsDetailsBtn = async (id) => {
   const url = `https://openapi.programming-hero.com/api/news/${id}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
+  displayNewsDetails(data.data[0]);
+};
+//------------------------------------------
+////Show individual news details in a modal
+//------------------------------------------
+const displayNewsDetails = (details) => {
+  const { title, author, total_view, thumbnail_url } = details;
+  const { name, published_date, img } = author;
+  //Modal title
+  const titleNews = document.getElementById("newsDetailsModalLabel");
+  titleNews.innerText = "";
+  titleNews.innerText = title ? title : "No title found";
+  // modal body
+  const modalBody = document.getElementById("modal-body-details");
+  modalBody.innerHTML = "";
+  const div = document.createElement("div");
+  div.innerHTML = `
+  <div class="d-flex align-items-center ">
+  <div> <img class="modal-autho me-4 " src="${thumbnail_url}"alt=""> </div>
+  <div>
+  <div> <img class="modal-author" src="${img}" alt=""> </div>
+  <p>${name ? name : "Not found"}</p>
+  <p>${published_date ? published_date : "Not found"}</p>
+  <p>${total_view ? total_view : "No data avaiable"} View</p>
+  </div>
+  </div>
+  `;
+  modalBody.appendChild(div);
 };

@@ -15,7 +15,8 @@ body {
 .news {
   cursor: pointer;
 }
-.news-author {
+.news-author,
+.modal-author {
   height: 2.5rem;
   width: 2.5rem;
   border-radius: 50%;
