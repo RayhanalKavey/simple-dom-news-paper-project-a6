@@ -40,7 +40,7 @@ const newInCategory = (id) => {
     .then((data) => newsFeed(data.data));
 };
 //// ----------------------------------------------
-//// Show All the new details in the new feed
+//// Show All the new details in the news feed
 //// ----------------------------------------------
 const newsFeed = (newsDetails) => {
   const newsFeedField = document.getElementById("news-feed");
@@ -59,14 +59,17 @@ const newsFeed = (newsDetails) => {
       total_view,
     } = news;
     const { name, published_date, img } = author;
+
     //Insert news details in the news feed
     const newsDiv = document.createElement("div");
     newsDiv.classList.add("col");
     newsDiv.innerHTML = `
  <div class="card flex-row">
             <img src="${image_url}" class="w-25 h-full" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title text-dark">${title}</h5>
+            <div class="card-body ">
+              <h5 class="card-title text-dark">${
+                title ? title : "No title found."
+              }</h5>
               <p class="card-text">
                ${
                  details.length > 300 ? details.slice(0, 300) + " ..." : details
@@ -77,13 +80,13 @@ const newsFeed = (newsDetails) => {
               <div class="d-flex align-items-center">
                 <div class="me-2">  <img class="news-author" src="${img}" alt=""></div>
                 <div>
-                <div>${name}</div>
+                <div>${name ? name : "Not recognized"}</div>
                 <div>${published_date}</div>
                 </div>
               </div>
               <div>${total_view ? total_view : "No"} view</div>
               <div>rating</div>
-              <button>details</button>
+             <button type="button" class="btn btn-light me-4" onclick="newsDetailsBtn('${_id}')" >Light</button>
             </div>
               </p>
             </div>
@@ -92,4 +95,13 @@ const newsFeed = (newsDetails) => {
   `;
     newsFeedField.appendChild(newsDiv);
   });
+};
+//-------------------------------------------------------
+////Load individual news details by cicking news details button
+//-------------------------------------------------------
+const newsDetailsBtn = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data);
 };
