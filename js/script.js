@@ -54,7 +54,7 @@ const newsFeed = (newsDetails, categoryName) => {
   newsDetails.sort((a, b) => {
     return b.total_view - a.total_view;
   });
-  // console.log(newsDetails);
+  console.log(newsDetails);
   //----------------------
 
   const newsFeedField = document.getElementById("news-feed");
@@ -87,33 +87,48 @@ const newsFeed = (newsDetails, categoryName) => {
     const newsDiv = document.createElement("div");
     newsDiv.classList.add("col");
     newsDiv.innerHTML = `
- <div class="card flex-row">
+      <div class="card h-100">
             <img src="${
               image_url ? image_url : "https://i.ibb.co/g9CSkZQ/image.png"
-            }" class="w-25 h-full" alt="..." />
-            <div class="card-body ">
-              <h5 class="card-title text-dark">${
-                title ? title : "No title found."
-              }</h5>
-              <p class="card-text">
+            }" class="card-img-top" alt="..." />
+      <div class="card-body ">
+            <h5 class="card-title text-dark">${
+              title ? title : "No title found."
+            }</h5>
+            <p class="card-text ">
                ${
-                 details.length > 300 ? details.slice(0, 300) + " ..." : details
+                 details.length > 200 ? details.slice(0, 200) + " ..." : details
                }
-              </p>
-              <p class="card-text">
-             <div class="d-flex justify-content-between align-items-end">
-              <div class="d-flex align-items-center">
-                <div class="me-2">  <img class="news-author" src="${img}" alt=""></div>
+            </p>
+            <hr>
+            <p class="card-text">
+            <div class="d-flex  justify-content-between align-items-center">
+               <div class="d-flex align-items-center">
+                <div class="me-2">  
+                  <img class="news-author" src="${img}" alt="">
+                </div>
                 <div>
-                <div>${name ? name : "Not recognized"}</div>
-                <div>${published_date ? published_date : "No date found"}</div>
+                  <div>${name ? name : "Not recognized"}
+                </div>
+                  <div>${
+                    published_date ? published_date : "No date found"
+                  }</div>
                 </div>
               </div>
+              
+              <div class=" d-flex flex-column gap-2  align-items-center me-3 "  >
+              
               <div>${total_view ? total_view : "No"} view</div>
-              <div>rating</div>
-
-             <button type="button" class="btn btn-light me-4" data-bs-toggle="modal" data-bs-target="#newsDetailsModal" onclick="newsDetailsBtn('${_id}')" >
-Details</button>
+           <div class="d-flex mb-4">
+                <i class="icn fa-regular fa-star-half-stroke"></i>
+                <i class="icn fa-regular fa-star"></i>
+                <i class="icn fa-regular fa-star"></i>
+                <i class="icn fa-regular fa-star"></i>
+                <i class="icn fa-regular fa-star"></i>
+           </div>
+           <button type="button" class="btn btn-light border " data-bs-toggle="modal" data-bs-target="#newsDetailsModal" onclick="newsDetailsBtn('${_id}')" >Details
+           </button>
+           </div>
              
             </div>
               </p>
