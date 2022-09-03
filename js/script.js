@@ -18,6 +18,7 @@ const showAllCategories = async () => {
   const data = await loadAllNews();
   const allCategories = data.data.news_category;
   // console.log(allCategories);
+
   // Access individual category
   allCategories.forEach((category) => {
     const { category_name, category_id } = category;
@@ -26,7 +27,7 @@ const showAllCategories = async () => {
     const nameItem = document.createElement("div");
     // console.log(nameItem);
     nameItem.innerHTML = `
-            <p class="news mx-4 my-3 text-center" onclick="newInCategory('${category_id}')" >  ${category_name}</p> 
+            <p class="news mx-4 my-3 text-center" onclick="newInCategory('${category_id}', '${category_name}')" >  ${category_name}</p> 
 
     `;
     categoryMenu.appendChild(nameItem);
@@ -36,21 +37,39 @@ showAllCategories();
 //// --------------------------
 //// load the news in a category
 //// --------------------------
-const newInCategory = (id) => {
+const newInCategory = (id, categoryName) => {
   toggleSpinner(true);
   const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
 
   fetch(url)
     .then((res) => res.json())
-    .then((data) => newsFeed(data.data))
+    .then((data) => newsFeed(data.data, categoryName))
     .catch((error) => console.log(error));
 };
 //// ----------------------------------------------
 //// Show All the new details in the news feed
 //// ----------------------------------------------
-const newsFeed = (newsDetails) => {
+const newsFeed = (newsDetails, categoryName) => {
+  // console.log(newsDetails);
   const newsFeedField = document.getElementById("news-feed");
   newsFeedField.innerHTML = "";
+  //No news display
+  //-------
+  const noResult = document.getElementById("no-news-text");
+  if (newsDetails.length === 0) {
+    noResult.classList.remove("d-none");
+  } else {
+    noResult.classList.add("d-none");
+  }
+  // ---------------
+  ///////count field
+  const count = Object.keys(newsDetails).length;
+  const countField = document.getElementById("news-count");
+  countField.innerText = "";
+  countField.innerText = `${
+    count === 0 ? "No" : count
+  } news article  found for category ${categoryName}`;
+  // ---------------
   newsDetails.forEach((news) => {
     // console.log(news);
     const {
@@ -65,7 +84,7 @@ const newsFeed = (newsDetails) => {
       total_view,
     } = news;
     const { name, published_date, img } = author;
-
+    //total view
     //Insert news details in the news feed
     const newsDiv = document.createElement("div");
     newsDiv.classList.add("col");
