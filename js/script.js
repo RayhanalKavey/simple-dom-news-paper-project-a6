@@ -50,18 +50,16 @@ const newInCategory = (id, categoryName) => {
 //// Show All the new details in the news feed
 //// ----------------------------------------------
 const newsFeed = (newsDetails, categoryName) => {
+  // Sort according to view
+  newsDetails.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   // console.log(newsDetails);
+  //----------------------
+
   const newsFeedField = document.getElementById("news-feed");
   newsFeedField.innerHTML = "";
-  //No news display
-  //-------
-  const noResult = document.getElementById("no-news-text");
-  if (newsDetails.length === 0) {
-    noResult.classList.remove("d-none");
-  } else {
-    noResult.classList.add("d-none");
-  }
-  // ---------------
+
   ///////count field
   const count = Object.keys(newsDetails).length;
   const countField = document.getElementById("news-count");
