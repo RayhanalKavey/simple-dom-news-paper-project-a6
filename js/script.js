@@ -54,7 +54,7 @@ const newsFeed = (newsDetails, categoryName) => {
   newsDetails.sort((a, b) => {
     return b.total_view - a.total_view;
   });
-  console.log(newsDetails);
+  // console.log(newsDetails);
   //----------------------
 
   const newsFeedField = document.getElementById("news-feed");
@@ -105,7 +105,9 @@ const newsFeed = (newsDetails, categoryName) => {
             <div class="d-flex  justify-content-between align-items-center">
                <div class="d-flex align-items-center">
                 <div class="me-2">  
-                  <img class="news-author" src="${img}" alt="">
+                  <img class="news-author" src="${
+                    img ? img : "https://i.ibb.co/g9CSkZQ/image.png"
+                  }" alt="">
                 </div>
                 <div>
                   <div>${name ? name : "Not recognized"}
