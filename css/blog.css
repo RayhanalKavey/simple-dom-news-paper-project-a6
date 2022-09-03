@@ -1,1 +1,29 @@
-
+body {
+  color: black;
+}
+table {
+  border-collapse: collapse;
+  margin: 2rem 3rem;
+  color: #858585;
+}
+th,
+td {
+  border: 1px solid gray;
+  padding: 0 10px;
+}
+th {
+  color: black;
+}
+tr {
+  text-align: center;
+}
+/* qsn 2 */
+h4 {
+  color: black;
+}
+.map-forEach,
+.arrow-regular,
+.temp {
+  margin: 2rem 3rem;
+  color: #858585;
+}

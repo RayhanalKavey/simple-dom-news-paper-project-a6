@@ -63,24 +63,157 @@
     <main class="container">
       <section>
         <h1>1. What are the differences between var, let and const?</h1>
-        <p></p>
+        <div class="d-flex border-3 flex-column">
+          <table>
+            <thead>
+              <tr>
+                <th>Var</th>
+                <th>Let</th>
+                <th>Const</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row-1 -->
+              <tr>
+                <td>The scope of a var variable is functional scope.</td>
+                <td>The scope of a let variable is block scope.</td>
+                <td>The scope of a const variable is block scope.</td>
+              </tr>
+              <!-- row-2 -->
+              <tr>
+                <td>It can be updated and re-declared into the scope.</td>
+                <td>
+                  It can be updated but cannot be re-declared into the scope.
+                </td>
+                <td>It cannot be updated or re-declared into the scope.</td>
+              </tr>
+              <!-- row-3 -->
+              <tr>
+                <td>It can be declared without initialization.</td>
+                <td>It can be declared without initialization.</td>
+                <td>It cannot be declared without initialization.</td>
+              </tr>
+              <!-- row-4 -->
+              <tr>
+                <td>
+                  It can be accessed without initialization as its default value
+                  is “undefined”.
+                </td>
+                <td>
+                  It cannot be accessed without initialization otherwise it will
+                  give ‘referenceError’.
+                </td>
+                <td>
+                  t cannot be accessed without initialization, as it cannot be
+                  declared without initialization.
+                </td>
+              </tr>
+              <!-- row-5 -->
+              <tr>
+                <td>Hoisting done , with initializing as ‘default’ value</td>
+                <td>
+                  Hoisting is done , but not initialized (this is the reason for
+                  error when we access the let variable before
+                  declaration/initialization
+                </td>
+                <td>
+                  Hoisting is done, but not initialized (this is the reason for
+                  error when we access the const variable before
+                  declaration/initialization
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
       <section>
         <h1>
           2. What are the differences between map, forEach, filter,and find?
         </h1>
-        <p></p>
+        <div class="map-forEach">
+          <!-- map -->
+          <h4>Map</h4>
+          <ul>
+            <li>
+              The map() method creates a new array populated with the results of
+              calling a provided function on every element in the calling array.
+            </li>
+            <li>Don’t modify old array</li>
+          </ul>
+          <!-- foreach -->
+          <h4>Foreach</h4>
+          <ul>
+            <li>
+              The forEach() method executes a provided function once for each
+              array element.
+            </li>
+            <li>
+              We don’t return anything from it. We just do something in it
+            </li>
+          </ul>
+          <!-- filter -->
+          <h4>Filter</h4>
+          <ul>
+            <li>
+              The filter() method creates a shallow copy of a portion of a given
+              array, filtered down to just the elements from the given array
+              that pass the test implemented by the provided function.
+            </li>
+            <li>Filter return all of them which are matched the condition</li>
+          </ul>
+          <!-- find -->
+          <h4>Find</h4>
+          <ul>
+            <li>
+              The find() method returns the first element in the provided array
+              that satisfies the provided testing function. If no values satisfy
+              the testing function, undefined is returned.
+            </li>
+            <li>Find return only the first match of the conditions</li>
+          </ul>
+        </div>
       </section>
       <section>
         <h1>
           3. What are the differences between arrow function and regular
           function?
         </h1>
-        <p></p>
+        <!-- Arrow function -->
+        <div class="arrow-regular">
+          <ul>
+            <li>
+              An arrow function expression is a compact alternative to a
+              traditional function expression, but is limited and can't be used
+              in all situations.
+            </li>
+            <li>
+              Arrow functions don't have their own bindings to this, arguments
+              or super, and should not be used as methods. On the other hand
+              traditional function expression can do all that.
+            </li>
+            <li>
+              Arrow functions don't have access to the new.target keyword.
+            </li>
+            <li>
+              Arrow functions aren't suitable for call, apply and bind methods,
+              which generally rely on establishing a scope.
+            </li>
+            <li>Arrow functions cannot be used as constructors.</li>
+            <li>Arrow functions cannot use yield, within its body.</li>
+          </ul>
+        </div>
       </section>
       <section>
         <h1>4. Why should we use template literals?</h1>
-        <p></p>
+        <div class="temp">
+          Template literals are enclosed by backtick (`) characters instead of
+          double or single quotes, allowing for the following, which are not
+          possible in normar double or single quote.
+          <ul>
+            <li>Multi-line string</li>
+            <li>String interpolation (Dynamic string)</li>
+          </ul>
+        </div>
       </section>
     </main>
     <!-- Bootstrap js  -->
